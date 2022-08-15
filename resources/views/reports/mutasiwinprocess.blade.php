@@ -133,7 +133,7 @@
                         <td class="border-2">{{ $item->code_mitem }}</td>
                         <td class="border-2">{{ $item->name_mitem }}</td>
                         <td class="border-2">{{ $item->satuan }}</td>
-                        <td class="border-2">--</td>
+                        <td class="border-2">{{ number_format($item->stock_akhir, 2, '.', ',') }}</td>
                         <td class="border-2">Sesuai</td>
                         {{-- <td class="border-2">{{ number_format($item->stock_awal, 2, '.', ',') }}</td>
                         <td class="border-2">{{ number_format($item->stock_in, 2, '.', ',') }}</td>
