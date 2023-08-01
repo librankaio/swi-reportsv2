@@ -53,49 +53,46 @@ PERIODE {{ $datefrForm }} S.D {{ $datetoForm }}</h5>
         @foreach ($results as $key => $item)  
         <tr>
             @if( $item->dpnomor == $dpnomor)
-                <td class="border-2"></td>
-                <td class="border-2"></td>
-                <td class="border-2"></td>
-                <td class="border-2"></td>
-                <td class="border-2"></td>
-                <td class="border-2"></td>
-                <td class="border-2"></td>
+              <td class="border-2" style="width: 1px;"></td>
+              <td class="border-2"></td>
+              <td class="border-2"></td>
+              <td class="border-2"></td>
+              <td class="border-2"></td>
+              <td class="border-2"></td>
+              <td class="border-2"></td>
             @else
-                @php $no++ @endphp 
-                <td class="border-2">{{ $no }}</td>
-                <td class="border-2">{{ $item->jenis_dokumen }}</td>
-                @if (substr($item->dpnomor,0,1) == 0)
-                    <td class="border-2 text">{{ "'".$item->dpnomor }}</td>
-                @else
-                    <td class="border-2">{{ $item->dpnomor }}</td>
-                @endif 
-                <td class="border-2">{{ date("d/m/Y", strtotime($item->dptanggal)) }}</td>
-                <td class="border-2">{{ $item->bpbnomor }}</td>
-                <td class="border-2">{{ date("d/m/Y", strtotime($item->bpbtanggal)) }}</td>
-                <td class="border-2">{{ $item->pembeli_penerima }}</td>
+              @php $no++ @endphp
+              <th scope="row" class="border-2">{{ $no }}</th>
+              <td class="border-2">{{ $item->jenis_dokumen }}</td>
+              <td class="border-2">{{ $item->dpnomor }}</td>
+              <td class="border-2">{{ date("d/m/Y", strtotime($item->dptanggal)) }}</td>
+              <td class="border-2">{{ $item->bpbnomor }}</td>
+              <td class="border-2">{{ date("d/m/Y", strtotime($item->bpbtanggal)) }}</td>
+              <td class="border-2">{{ $item->pembeli_penerima }}</td>
             @endif
             <td class="border-2">{{ $item->kode_barang }}</td>
             <td class="border-2">{{ $item->nama_barang }}</td>
             <td class="border-2">{{ $item->sat }}</td>
+
             @if ($item->jumlah == 0)
-            <td class="border-2">0</td>
+            <td class="border-2">--</td>
             @else
-            <td class="border-2">{{ $item->jumlah }}</td>
+            <td class="border-2">{{ number_format($item->jumlah, 2, '.', ',') }}</td>
             @endif
             @if ($item->nilai_barang == 0)
-            <td class="border-2">0</td>
+            <td class="border-2">--</td>
             @else
-            <td class="border-2">{{ number_format($item->nilai_barang, 2, '.', ',') }}</td>
+            <td class="border-2">{{ 'Rp. '.number_format($item->nilai_barang, 2, '.', ',') }}</td>
             @endif
             @if ($item->nilai_barang_usd == 0)
-            <td class="border-2">0</td>
+            <td class="border-2">--</td>
             @else
-            <td class="border-2">{{ number_format($item->nilai_barang_usd, 2, '.', ',') }}</td>
+            <td class="border-2">{{ '$. '.number_format($item->nilai_barang_usd, 2, '.', ',') }}</td>
             @endif
-        </tr>
-        @php 
-        $dpnomor = $item->dpnomor
-        @endphp
+      </tr>
+          @php 
+          $dpnomor = $item->dpnomor
+          @endphp
         @endforeach
         @elseif(count($results) == 0)
             <td colspan="13" class="border-2"> 
